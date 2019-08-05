@@ -1,7 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.DAO.UserDAO;
-import model.User;
+import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,14 +13,14 @@ import java.util.List;
 @RequestMapping("/company")
 public class UserController {
 
-    @Autowired
+//    @Autowired
     UserDAO userDAO;
 
     //save user
     @PostMapping("/users")
     public User createUser(@Valid @RequestBody User user){
 
-        return userDAO.cerate(user);
+        return userDAO.create(user);
 
     }
 
@@ -54,9 +54,20 @@ public class UserController {
         user.setName(userDetails.getName());
         user.setAge(userDetails.getAge());
 
-        User updateUser = userDAO.cerate(user);
+        User updateUser = userDAO.create(user);
         return ResponseEntity.ok().body(updateUser);
 
     }
 
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<User> deleteUser(@PathVariable(value = "id") Long uid){
+
+        User user = userDAO.findByIdOne(uid);
+        if(user == null){
+            return ResponseEntity.notFound().build();
+        }
+        userDAO.deleteUser(user);
+        return ResponseEntity.ok().build();
+
+    }
 }

@@ -1,19 +1,19 @@
 package com.example.demo.DAO;
 
 import com.example.demo.repositpry.UserRepository;
-import model.User;
+import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 public class UserDAO {
 
-    @Autowired
+//    @Autowired
     UserRepository userRepository;
 
     //create user
-    public User cerate(User user){
+    public User create(User user){
         return userRepository.create(user);
     }
 
