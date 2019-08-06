@@ -1,27 +1,40 @@
 package com.example.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
+import org.springframework.context.annotation.Bean;
 
-@Entity
+import java.util.ArrayList;
+import java.util.List;
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @NotBlank
+
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+//    @NotBlank
     private String name;
-    @NotBlank
+//    @NotBlank
     private int age;
 
-    public Long getId() {
+
+//    public List<User> getUserList() {
+//        return userList;
+//    }
+
+    public User() {
+    }
+
+    public User(int id, String name, int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
