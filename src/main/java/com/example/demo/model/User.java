@@ -1,34 +1,18 @@
 package com.example.demo.model;
 
-import org.springframework.context.annotation.Bean;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import java.util.ArrayList;
-import java.util.List;
+@Entity
 public class User {
 
-
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-//    @NotBlank
     private String name;
-//    @NotBlank
     private int age;
-
-
-//    public List<User> getUserList() {
-//        return userList;
-//    }
-
-    public User() {
-    }
-
-    public User(int id, String name, int age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-    }
-
 
     public int getId() {
         return id;

@@ -1,11 +1,8 @@
 package com.example.demo.DAO;
 
 import com.example.demo.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 @Service
 public class UserDAO {
 
@@ -29,7 +26,7 @@ public class UserDAO {
         return user;
     }
 
-    public List<User> findAll() {
-        return new ArrayList<User>();
+    public void findAll() {
+        return ;
     }
 }
