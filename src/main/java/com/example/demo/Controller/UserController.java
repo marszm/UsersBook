@@ -15,16 +15,28 @@ public class UserController {
     UserService userService;
 
     //save user
-    @PostMapping("/users")
+    @PostMapping("/user")
     public User createUser(@Valid @RequestBody User user){
         return userService.save(user);
 
     }
 
     //get all users
-    @GetMapping("/usersall")
+    @GetMapping("/userall")
     Iterable<User> read(){
         return userService.findAll();
+    }
+
+    //update
+    @PutMapping("/update")
+    User update(@RequestBody User user){
+        return userService.save(user);
+    }
+
+    //delete by id
+    @DeleteMapping("/delete/{id}")
+    void delete(@PathVariable Integer id){
+        userService.deleteById(id);
     }
 
 }
