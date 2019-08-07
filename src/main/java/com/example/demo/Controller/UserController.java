@@ -14,6 +14,16 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @GetMapping("/hello")
+    public String hello(){
+        return "Hellooooo !!! :-)";
+    }
+
+    @GetMapping("/hello2")
+    public String hello2(){
+        return "Hellooooo2 !!! :-)";
+    }
+
     //save user
     @PostMapping("/user")
     public User createUser(@Valid @RequestBody User user){
