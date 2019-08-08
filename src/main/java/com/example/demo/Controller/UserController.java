@@ -8,31 +8,21 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/company")
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
     UserService userService;
 
-    @GetMapping("/hello")
-    public String hello(){
-        return "Hellooooo !!! :-)";
-    }
-
-    @GetMapping("/hello2")
-    public String hello2(){
-        return "Hellooooo2 !!! :-)";
-    }
-
     //save user
-    @PostMapping("/user")
+    @PostMapping("/create")
     public User createUser(@Valid @RequestBody User user){
         return userService.save(user);
 
     }
 
     //get all users
-    @GetMapping("/userall")
+    @GetMapping("/read")
     Iterable<User> read(){
         return userService.findAll();
     }

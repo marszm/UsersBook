@@ -17,8 +17,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/company/hello").permitAll()
-                .anyRequest().hasRole("ADMIN")
+//                .antMatchers("/api/read").permitAll()
+                .antMatchers("/api/create").permitAll()
+                .antMatchers("/api/read").hasAnyRole("ADMIN","USER")
+                .antMatchers("/api/update").hasAnyRole("ADMIN","USER")
+                .antMatchers("api/delete").hasRole("ADMIN")
                 .and()
                 .formLogin().permitAll()
                 .and()
@@ -39,8 +42,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                .build();
         return new InMemoryUserDetailsManager(user, admin);
 
-
     }
-
-
 }
