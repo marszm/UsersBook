@@ -2,6 +2,7 @@ package com.example.demo.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -16,16 +17,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.httpBasic().and().authorizeRequests()
 //                .antMatchers("/api/read").permitAll()
-                .antMatchers("/api/create").permitAll()
-                .antMatchers("/api/read").hasAnyRole("ADMIN","USER")
-                .antMatchers("/api/update").hasAnyRole("ADMIN","USER")
-                .antMatchers("api/delete").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/create").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/read").hasAnyRole("ADMIN","USER")
+                .antMatchers(HttpMethod.PUT,"/api/update").hasAnyRole("ADMIN","USER")
+                .antMatchers(HttpMethod.DELETE,"api/delete").hasRole("ADMIN")
                 .and()
                 .formLogin().permitAll()
                 .and()
-                .logout().permitAll();
+                .logout().permitAll()
+                .and()
+                .csrf().disable();
     }
 
     @Bean
